@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Griglia Campo Minato</title>
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap -->
+    <!-- MY css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- MY css -->
+  </head>
+  <body class="d-flex flex-column w-100vh">
+    <!-- header -->
+    <header class="p-3 d-flex justify-content-between align-items-center">
+      <!-- cpntenitore col 1 -->
+      <div class="d-flex">
+        <img src="img/Logo.png" alt="Boolean Logo" />
+        <h1 class="text-uppercase fw-bolder ms-4">Campo minato</h1>
+      </div>
+      <!-- cpntenitore col 1 -->
+      <!-- col 2 -->
+      <div class="d-flex col-auto">
+        <label for="difficolta" class="me-1">Difficoltà:</label>
+        <select name="difficoltà" id="difficolta" class="me-3 rounded">
+          <option value="100">1</option>
+          <option value="81">2</option>
+          <option value="49">3</option>
+        </select>
+        <button class="border-1 rounded px-5 py-0" id="bottone-play">
+          Play
+        </button>
+      </div>
+      <!-- col 2 -->
+    </header>
+    <!-- header -->
+
+    <!-- main -->
+    <main class="flex-grow-1 d-flex align-items-center justify-content-center">
+      <div class="board d-flex flex-wrap d-none"></div>
+    </main>
+    <!-- main -->
+
+    <!-- footer -->
+    <footer class="p-3">
+      <span>Made with &hearts; by <a href="#">Boolean</a></span>
+    </footer>
+    <!-- footer -->
+
+    <!-- MY Script -->
+    <script src="js/main.js"></script>
+    <!-- MY Script -->
+  </body>
+</html>
