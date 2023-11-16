@@ -13,9 +13,18 @@ function cellFunction(tag, className, content) {
 
   // funzione per evento click
   element.addEventListener('click', function () {
-    element.classList.toggle('bg-primary');
+    if (bombe.includes(content)) {
+      element.classList.toggle('bg-danger');
+    } else {
+      element.classList.toggle('bg-primary');
+    }
   });
   return element;
+}
+
+function uguaglianza(content) {
+  bombe.includes(content);
+  return;
 }
 
 function valore(tag) {
@@ -45,6 +54,15 @@ btnPlay.addEventListener('click', function (e) {
   for (let i = 1; i <= numeroValore; i++) {
     cell = cellFunction('div', 'cell', i);
     board.append(cell);
-    console.log(cell);
   }
 });
+
+const bombe = [];
+let j = 0;
+while (j < 16) {
+  const numeroRandom = Math.floor(100 * Math.random());
+  bombe.push(numeroRandom);
+  j++;
+}
+
+console.log(bombe);
