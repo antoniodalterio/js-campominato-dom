@@ -8,61 +8,91 @@ Funzioni
 
 function cellFunction(tag, className, content) {
   const element = document.createElement(tag);
-  element.append(content);
   element.classList.add(className);
+  element.classList.add('cell');
+  element.append(content);
 
   // funzione per evento click
+
   element.addEventListener('click', function () {
-    if (bombe.includes(content)) {
+    let conteggio = 0;
+    let conteggioAttivo = true;
+    // inclusione bombe
+    if (bombeRandom(valore('select')).includes(content)) {
       element.classList.toggle('bg-danger');
-    } else {
+      conteggioAttivo = false;
+      reset();
+      alert(`il tuo punteggio è di ${conteggio}`);
+    } // inclusione bombe
+    else {
       element.classList.toggle('bg-primary');
+      conteggioAttivo = true;
+    }
+    if (conteggioAttivo) {
+      conteggio++;
     }
   });
   return element;
 }
 
-function uguaglianza(content) {
-  bombe.includes(content);
-  return;
-}
+// creazione della board
 
+function board(tag) {
+  const board = document.querySelector(tag);
+  let numeroValore = valore('select');
+  const cells = Math.sqrt(numeroValore);
+  // ciclo creazione celle
+  for (let i = 1; i <= numeroValore; i++) {
+    let cell = cellFunction('div', `cell-${cells}`, i);
+    board.append(cell);
+  }
+
+  return board;
+}
+// creazione della board
+
+//  funzione valore tag select
 function valore(tag) {
-  var difficoltaValore = document.querySelector(tag);
+  let difficoltaValore = document.querySelector(tag);
   difficoltaValore = difficoltaValore.value;
   return difficoltaValore;
 }
+
+//  funzione valore tag select
+
+// funzone reset
+
+function reset() {
+  board('.board').innerHTML = '';
+}
+
+// funzone reset
+
+// funzione creazione bombe
+function bombeRandom(value) {
+  const bombe = [];
+  while (bombe.length < 16) {
+    let numeroRandom = Math.floor(Math.random() * value + 1);
+    if (bombe.indexOf(numeroRandom) === -1) {
+      bombe.push(numeroRandom);
+    }
+  }
+
+  return bombe;
+}
+
+// funzione creazione bombe
 
 /* 
 Funzioni
 */
 
-const board = document.querySelector('.board');
-let cell = '';
 const btnPlay = document.getElementById('bottone-play');
-
-// Ciclo creazione elementi nel document html
 
 // eventoi al click del bottone
 
 btnPlay.addEventListener('click', function (e) {
-  board.classList.toggle('d-none');
-
-  var numeroValore = valore('select');
-  console.log(numeroValore);
-
-  for (let i = 1; i <= numeroValore; i++) {
-    cell = cellFunction('div', 'cell', i);
-    board.append(cell);
-  }
+  reset();
+  const myBoard = board('.board');
+  myBoard.classList.toggle('d-none');
 });
-
-const bombe = [];
-let j = 0;
-while (j < 16) {
-  const numeroRandom = Math.floor(100 * Math.random());
-  bombe.push(numeroRandom);
-  j++;
-}
-
-console.log(bombe);
